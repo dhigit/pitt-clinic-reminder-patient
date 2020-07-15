@@ -4,26 +4,22 @@
       <ion-back-button defaultHref="/reminders">
       </ion-back-button>
     </ion-button>
-    <ion-title>{{ loadedReminder.title }}</ion-title>
-    <ion-buttons slot="primary">
-      <ion-button (click)="onDeleteReminder()">
-        <ion-icon name="mail-open-outline" slot="icon-only"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <ion-title>Reminder</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-label>
-          {{ loadedReminder.desc }}
-        </ion-label>
-        
-      </ion-col>
-    </ion-row>
-    
-  </ion-grid>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ loadedReminder?.title }}</ion-card-title>
+      <ion-card-subtitle>priority: <b>{{ loadedReminder?.priority }}</b></ion-card-subtitle>
+      <ion-card-subtitle><i>{{ loadedReminder?.createdTime }}</i></ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{ loadedReminder?.desc }}
+      <ion-button expand="block" (click)="onDeleteReminder()" *ngIf="!loadedReminder?.status">Mark as done</ion-button>
+    </ion-card-content>
+  </ion-card>
   
 </ion-content>

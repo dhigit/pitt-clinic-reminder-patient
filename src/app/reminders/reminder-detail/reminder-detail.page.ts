@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RemindersService } from '../reminders.service';
+import { RemindersService } from '../services/reminders.service';
 import { Reminder } from '../reminder.model';
 import { AlertController } from '@ionic/angular';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-reminder-detail',
@@ -11,39 +12,35 @@ import { AlertController } from '@ionic/angular';
 })
 export class ReminderDetailPage implements OnInit {
 
-  loadedReminder: Reminder;
+  loadedReminder = null;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private remindersService: RemindersService,
-    private router: Router,
     private alertCtrl: AlertController
   ) { }
 
   ngOnInit() {
-    this.activatedRoute.paramMap.subscribe(paramMap => {
-      if (!paramMap.has('rid')){
-        this.router.navigate(['/reminders']);
-        return;
-      }
+    let rid = this.activatedRoute.snapshot.paramMap.get('rid');
 
-      const rid = paramMap.get('rid');
-      this.loadedReminder = this.remindersService.getReminder(+rid);
+    this.remindersService.getReminder(+rid).subscribe(result => {
+      //console.log(result);
+      this.loadedReminder = result;
     });
   }
 
   onDeleteReminder() {
     this.alertCtrl.create({
-      header: "Delete warning",
-      message: "Are you sure to delete this?",
+      header: "Message",
+      message: "Are you sure to mark this reminder as done?",
       buttons:[{
         text:'Cancel',
         role: 'cancel'
       },{
-        text: 'Delete',
+        text: 'Mark as done',
         handler: ()=>  {
-          this.remindersService.deleteReminder(this.loadedReminder.rid);
-          this.router.navigate(['/reminders']);
+          this.loadedReminder.status=true;
+          //implement web put service
         }
       }]
     }).then(alertEl => {
