@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-button slot="start">
+      <ion-back-button defaultHref="/reminders">
+      </ion-back-button>
+    </ion-button>
+    <ion-title>{{ loadedReminder.title }}</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onDeleteReminder()">
+        <ion-icon name="mail-open-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-label>
+          {{ loadedReminder.desc }}
+        </ion-label>
+        
+      </ion-col>
+    </ion-row>
+    
+  </ion-grid>
+  
+</ion-content>
