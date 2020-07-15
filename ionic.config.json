@@ -1,0 +1,7 @@
+{
+  "name": "pitt-clinic-reminder-patient",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
