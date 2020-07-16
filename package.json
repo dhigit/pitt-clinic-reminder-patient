@@ -1,7 +1,7 @@
 {
   "name": "pitt-clinic-reminder-patient",
   "version": "0.0.1",
-  "author": "Ionic Framework",
+  "author": "Yudhi Paramartha",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.901.5",
-    "@angular/cli": "~9.1.5",
+    "@angular/cli": "9.1.11",
     "@angular/compiler": "~9.1.6",
     "@angular/compiler-cli": "~9.1.6",
     "@angular/language-service": "~9.1.6",
@@ -52,5 +52,5 @@
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
   },
-  "description": "An Ionic project"
+  "description": "Clinic Reminder App for Patient"
 }
