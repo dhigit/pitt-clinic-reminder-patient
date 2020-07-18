@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class RemindersPage implements OnInit {
 
-  patientId = 1;
+  patientId = 1001;
   results: Observable<any>;
 
   constructor(
@@ -18,6 +18,10 @@ export class RemindersPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.results = this.getReminders();
+  }
+
+  ionViewWillEnter() {
     this.results = this.getReminders();
   }
 

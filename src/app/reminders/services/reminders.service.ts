@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from   'rxjs/operators';
 
@@ -14,7 +14,7 @@ export class RemindersService {
 
   getAllReminders(patientId: number): Observable<any>{
     return this.http.get(
-      this.url + '/patient/' + patientId
+      `${this.url}/patient/${patientId}`
     ).pipe(
       map(
         results => {
@@ -27,7 +27,7 @@ export class RemindersService {
 
   getReminder(rid: number): Observable<any>{
     return this.http.get(
-      this.url + '/' + rid
+      `${this.url}/${rid}`
     ).pipe(
       map(
         result => {
@@ -38,5 +38,27 @@ export class RemindersService {
     )
   }
 
+  updateReminderStatusAsDone(rid): Observable<any>{
+    let headers = new HttpHeaders({
+        'Content-Type': 'application/json'
+    });
+    let options = {
+        headers: headers
+    }
+
+    return this.http.put(
+      `${this.url}/done/${rid}`,
+      {},
+      options
+    ).pipe(
+      map(
+        result => {
+          //console.log(result);
+          return result;
+        }
+      )
+    )
+ 
+  }
 
 }

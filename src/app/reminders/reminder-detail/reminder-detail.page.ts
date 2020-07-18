@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 export class ReminderDetailPage implements OnInit {
 
   loadedReminder = null;
-
+  rid = -1;
   constructor(
     private activatedRoute: ActivatedRoute,
     private remindersService: RemindersService,
@@ -21,10 +21,9 @@ export class ReminderDetailPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    let rid = this.activatedRoute.snapshot.paramMap.get('rid');
+    this.rid = +this.activatedRoute.snapshot.paramMap.get('rid');
 
-    this.remindersService.getReminder(+rid).subscribe(result => {
-      //console.log(result);
+    this.remindersService.getReminder(this.rid).subscribe(result => {
       this.loadedReminder = result;
     });
   }
@@ -39,8 +38,10 @@ export class ReminderDetailPage implements OnInit {
       },{
         text: 'Mark as done',
         handler: ()=>  {
-          this.loadedReminder.status=true;
-          //implement web put service
+
+          this.remindersService.updateReminderStatusAsDone(this.rid).subscribe(result => {
+            this.loadedReminder = result;
+          });
         }
       }]
     }).then(alertEl => {

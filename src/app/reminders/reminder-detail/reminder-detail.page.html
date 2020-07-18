@@ -14,12 +14,14 @@
       <ion-card-title>{{ loadedReminder?.title }}</ion-card-title>
       <ion-card-subtitle>Priority: <b>{{ loadedReminder?.priority }}</b></ion-card-subtitle>
       <ion-card-subtitle>Duration: <b>{{ loadedReminder?.duration }}</b> hour(s)</ion-card-subtitle>
-      <ion-card-subtitle><i>{{ loadedReminder?.createdTime }}</i></ion-card-subtitle>
+      <ion-card-subtitle>Created: <i>{{ loadedReminder?.createdTime }}</i></ion-card-subtitle>
     </ion-card-header>
   
     <ion-card-content>
       {{ loadedReminder?.desc }}
-      <ion-button expand="block" (click)="onDeleteReminder()" *ngIf="!loadedReminder?.status">Mark as done</ion-button>
+      <ion-button expand="block" disabled color="danger" *ngIf="(loadedReminder?.overdue &&  !loadedReminder?.status)">Task has been overdue</ion-button>
+      <ion-button expand="block" (click)="onDeleteReminder()" *ngIf="(!loadedReminder?.status && !loadedReminder?.overdue)">Mark as done</ion-button>
+      <ion-button expand="block" disabled color="success" *ngIf="loadedReminder?.status">Task has been done</ion-button>
     </ion-card-content>
   </ion-card>
   
