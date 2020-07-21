@@ -42,4 +42,8 @@ export class RemindersPage implements OnInit {
     event.target.complete();
   }
 
+  logout(){
+    this.router.navigate([`/login`]);
+  }
+
 }
