@@ -17,10 +17,16 @@ export class ReminderDetailPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private remindersService: RemindersService,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    
+    if (!localStorage.length){
+      this.router.navigate([`/login`]);
+    }
+
     this.rid = +this.activatedRoute.snapshot.paramMap.get('rid');
 
     this.remindersService.getReminder(this.rid).subscribe(result => {
