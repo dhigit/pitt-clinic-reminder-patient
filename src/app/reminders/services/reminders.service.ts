@@ -8,7 +8,7 @@ import { map } from   'rxjs/operators';
 })
 export class RemindersService {
 
-  url = 'http://localhost:8080/api/reminders';
+  url = 'http://10.38.105.70:8080/api/reminders';
 
   constructor(private http: HttpClient) { }
 

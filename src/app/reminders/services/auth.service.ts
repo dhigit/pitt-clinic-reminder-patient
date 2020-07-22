@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
 
-  private url = 'http://localhost:8080/api/';
+  private url = 'http://10.38.105.70:8080/api/';
 
   constructor(private http: HttpClient) { }
 
